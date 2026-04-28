@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { FinanceProvider } from './contexts/FinanceContext';
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -8,13 +9,15 @@ import Cards from './pages/Cards';
 import Debts from './pages/Debts';
 
 function AppLayout() {
+  const [collapsed, setCollapsed] = useState(false);
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#0a0e1a] transition-colors">
-      <Sidebar />
-      <div className="lg:pl-64 flex flex-col min-h-screen transition-all duration-300 w-full" id="main-content">
+      <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+      <div className={`${collapsed ? 'lg:pl-20' : 'lg:pl-64'} flex flex-col min-h-screen transition-all duration-300 w-full`} id="main-content">
         <Header />
         <main className="flex-1 p-4 sm:p-6 lg:p-8">
-          <div className="max-w-7xl mx-auto w-full">
+          <div className="w-full">
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/cartoes" element={<Cards />} />

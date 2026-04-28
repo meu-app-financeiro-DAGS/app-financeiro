@@ -16,8 +16,12 @@ const navItems = [
   { path: '/dividas', label: 'Dívidas', icon: Receipt },
 ];
 
-export default function Sidebar() {
-  const [collapsed, setCollapsed] = useState(false);
+interface SidebarProps {
+  collapsed: boolean;
+  setCollapsed: (collapsed: boolean) => void;
+}
+
+export default function Sidebar({ collapsed, setCollapsed }: SidebarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const { isDark } = useTheme();
