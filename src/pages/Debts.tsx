@@ -26,8 +26,6 @@ function DebtCard({ debt, onEdit, onDelete, onSimulate }: {
   const { isDark: dk } = useTheme();
   const progress = (debt.paidAmount / debt.totalAmount) * 100;
   const remaining = debt.totalAmount - debt.paidAmount;
-  const remainingInstallments = debt.totalInstallments - debt.paidInstallments;
-  const totalWithInterest = remaining + (remaining * (debt.interestRate / 100) * remainingInstallments);
   const progressColor = progress >= 75 ? 'from-emerald-500 to-emerald-400' :
     progress >= 50 ? 'from-primary-500 to-primary-400' :
     progress >= 25 ? 'from-yellow-500 to-yellow-400' : 'from-red-500 to-red-400';
